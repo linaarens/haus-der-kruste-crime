@@ -32,7 +32,7 @@
     .chat-title{ font-weight:700; }
     .chat-snippet{ color: var(--intra-muted); font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-   
+    
     .chat-main{ display:grid; grid-template-rows: auto 1fr auto; height:100%; }
     .chat-main__head{ padding:10px 14px; border-bottom:1px solid rgba(0,0,0,.06); display:flex; align-items:center; gap:10px; }
     .chat-main__head .avatar{ width:36px; height:36px; font-size:12px }
@@ -62,7 +62,7 @@
     .muted{ color: var(--intra-muted) }
     .hide-on-mobile{ display:block } @media (max-width:980px){ .hide-on-mobile{ display:none } }
 
-    
+   
 .chat-messages{ position:relative; overflow:auto; scroll-behavior:smooth; }
 .scroll-btn{
   position:absolute; right:12px; bottom:12px; z-index:10;
@@ -117,7 +117,7 @@
     <nav class="menu-panel">
   <a href="index.html">Start</a>
   <a href="dienstplan.html">Dienstplan</a>
-  <a href="rezepte.html">Rezepte</a>
+  <a href="verwaltung.html">Verwaltung</a>
   <a href="nachrichten.html">Nachrichten</a>
 </nav>
 
@@ -145,12 +145,14 @@
             <div class="avatar av--f">FÖ</div>
             <div class="chat-meta"><div class="chat-title">Fatima Özdemir</div><div class="chat-snippet">…</div></div>
           </div>
-          
+          <div class="chat-item" data-chat="chat-markus">
+            <div class="avatar av--m">MW</div>
+            <div class="chat-meta"><div class="chat-title">Markus Wagner</div><div class="chat-snippet">…</div></div>
+          </div>
           <div class="chat-item" data-chat="chat-marcel">
             <div class="avatar av--mw">MaW</div>
             <div class="chat-meta"><div class="chat-title">Marcel Walde</div><div class="chat-snippet">…</div></div>
           </div>
-        
         </div>
       </aside>
 
@@ -166,10 +168,10 @@
 
         <div class="chat-messages" id="chatMessages">
           
-         <div class="thread active" id="chat-group">
+          <div class="thread active" id="chat-group">
             <div class="msg-group">
-              <div class="bubble bubble--in">Krass, das mit Marcel... Ich weiß immer noch nicht, wie ich das verarbeiten soll...</div>
-              <div class="bubble bubble--out">Ja oder? Vor allem das kam so plötzlich. Weiß man schon was Neues von den Behörden?</div>
+              <div class="bubble bubble--out">Krass, das mit Marcel... Ich weiß immer noch nicht, wie ich das verarbeiten soll...</div>
+              <div class="bubble bubble--in">Ja oder? Vor allem das kam so plötzlich. Weiß man schon was Neues von den Behörden?</div>
                <div class="bubble bubble--in">Bei einem Bekannten von mir war das auch so ähnlich. Er hatte ne Nussallergie und auf einmal so nen Schock. Zack, tot.</div>
                <div class="bubble bubble--in">Echt traurig. Er war nicht mal mit der Ausbildung fertig. Die arme Familie.</div>
                 <div class="bubble bubble--in">So ein dummer Unfall.</div>
@@ -178,40 +180,41 @@
 
           <div class="thread" id="chat-annemarie">
             <div class="msg-group">
-              <div class="bubble bubble--in">Hey Marie, das neue Intranet ist wirklich super geworden! Ich zahle dir diesen Monat einen Bonus aus. Bleibst du dran an dem neuen Update für die Website?</div>
-              <div class="bubble bubble--out">Danke! Ja, mache ich.</div>
-                <div class="bubble bubble--out">Marcel hatte dir ja schon gesagt, dass es mit deinem Passwort Probleme gab. Wir haben dir ein Neues angelegt, ich bin mir nur unsicher, wie ich dir das am besten mitteilen kann. Martin legt ja großen Wert auf Sicherheit und Geheimhaltung.</div>
-<div class="bubble bubble--in">Stimmt, ich sehe euch zwei diese Woche ja nicht mehr, aber das Passwort bräuchte ich dringend. Kannst du mir das vielleicht verschlüsselt geben?</div>
-<div class="bubble bubble--out">Ja, ich habe eine Idee. Ich habe es in unserer Website versteckt. Schau dir einfach die Worte über meinem kleinen Easteregg an. Keine Zeichen, nur die Anfangsbuchstaben der Worte zusammengeschrieben. Achte auf die richtige Groß- und Kleinschreibung.</div>
-<div class="bubble bubble--in">Das ist perfekt, Danke!</div>
-            </div>
-          </div>
-
-          
-
-          <div class="thread" id="chat-marcel">
-            <div class="msg-group">
-              <div class="bubble bubble--out">Marcel, das geht so langsam nicht mehr weiter. Mir ist echt unwohl dabei. Du musst dringend mit deinem Bruder reden.</div>
-              <div class="bubble bubble--in">Ich weiß doch auch nicht mehr was ich tun soll. Das Ganze ist komplett außer Kontrolle geraten.</div>
-              <div class="bubble bubble--out">Halte das wenigstens aus der Bäckerei raus. Sonst stecken wir alle mit in dem Problem.</div>
-               <div class="bubble bubble--in">Mein Bruder sagt, so ist es am unauffälligsten. Und die Käufer finden das auch gut, deswegen kaufen so viele bei mir.</div>
-               <div class="bubble bubble--out">Marcel, bitte. Denk doch an den Vorfall letztens. Das muss euch doch wachrütteln!</div>
+              <div class="bubble bubble--in">Super gemacht mit dem Intranet und dem EC-System. Danke dir, das hat mir wirklich unglaublich geholfen. Ich werde dir diesen Monat auf jeden Fall einen Bonus auszahlen!</div>
+              <div class="bubble bubble--out">Danke Annemarie!</div>
             </div>
           </div>
 
           <div class="thread" id="chat-fatima">
-          <div class="msg-group">
-              <div class="bubble bubble--out">Wie geht es in der Bäckerei? Alles gut bei dir?</div>
-              <div class="bubble bubble--in">Gut soweit Liebes, nur ein paar unangenehme Begegnungen...</div>
-              <div class="bubble bubble--out">Ja? Ist Lucy wieder gekommen?</div>
-           <div class="bubble bubble--in">Ja. Und Annegret...</div>
-           <div class="bubble bubble--out">Oh nein, die Arme tut mir so leid... Tragisch, was da mit ihrer Enkelin passiert ist.</div>
-           <div class="bubble bubble--in">Ja... Sie hat erzählt, dass die Planung der Beerdigung sehr hart für sie ist.</div>
-           <div class="bubble bubble--out">Das glaube ich. Weiß man, woran sie gestorben ist? Sie war ja erst 16...</div>
-           <div class="bubble bubble--in">Das wollte ich sie nicht fragen. Vielleicht erzählt sie es ja mal, wenn sie soweit ist. Man munkelt aber, es soll eine Überdosis gewesen sein.</div>
-           <div class="bubble bubble--out">Oh Gott!! Das wäre ja schrecklich.</div>
-           <div class="bubble bubble--in">Ja... Wie läuft es bei dir heute?</div>
-           <div class="bubble bubble--out">Ganz gut. Ich gehe noch mit Abby spazieren, dann setze ich mich weiter an die Updates für die Website.</div>
+            <div class="msg-group">
+              <div class="bubble bubble--in">Hallo Martin, kommst du heute in die Bäckerei? Ich bin mit den neuen EC-Geräten noch etwas überfordert...</div>
+              <div class="bubble bubble--out">Ja, heute Nachmittag. Ich habe dir doch letzte Woche gezeigt, wie das funktioniert.</div>
+              <div class="bubble bubble--in">Ich habe vergessen, wie das mit dem Bon drucken gehen soll. Da steht dann nur 'Weiter' und 'Print'.</div>
+              <div class="bubble bubble--out">Wenn du was drucken willst, musst du auf 'Print' drücken. Das heißt drucken.</div>
+              <div class="bubble bubble--in">Ahh. Danke. Du weißt ja, mein Englisch ist nicht mehr das Goldene vom Ei...</div>
+              <div class="bubble bubble--in">Apropos, wir sollen uns ja Passwörter anlegen für das Intranet. Da muss ich auf 'Create password' gehen oder?</div>
+              <div class="bubble bubble--out">Ja genau. Und denke dir bitte etwas Sicheres aus.</div>
+              <div class="bubble bubble--in">Sind mein Name und mein Geburtsjahr sicher? So ähnlich hat Marie das ja auch gemacht.</div>
+              <div class="bubble bubble--out">Fatima, mach das einfach wie du denkst. Und bitte: verratet euch nicht gegenseitig eure Passwörter!!</div>
+            </div>
+          </div>
+
+          <div class="thread" id="chat-markus">
+            <div class="msg-group">
+                 <div class="bubble bubble--in">Hallo du Techniker! Du hast ja gesagt, wir sollen uns Passwörter für dieses intere Internetdings machen. Was soll ich für ein Passwort nehmen? Du weißt, diese Internetsachen habe ich nicht so drauf.</div>
+              <div class="bubble bubble--out">Markus, dein Passwort soll geheim bleiben. Nimm einfach irgendwas.</div>
+              <div class="bubble bubble--in">Okay, wie wäre es mit AnnemarieLisa? Passt das?</div>
+               <div class="bubble bubble--out">Geheim Markus. Bitte. Und vielleicht etwas sicherer... Ich habe zum Beispiel eine Kombination aus drei Buchstaben meines Vornames, meine drei Liebelingszahlen und die drei letzten Buchstaben meines Nachnamens genommen. Sowas in die Richtung.</div>
+             <div class="bubble bubble--in">Alles klar. Ich nehme einfach den Geburtstag meiner Tochter Lisa. Das ist okay, oder?</div>
+              <div class="bubble bubble--out">Ach Markus...</div>
+            </div>
+          </div>
+
+          <div class="thread" id="chat-marcel">
+            <div class="msg-group">
+              <div class="bubble bubble--in">Hey Bro, lass uns später noch nach der Arbeit bei mir zuhause treffen.</div>
+              <div class="bubble bubble--out">Klingt gut, brauche dringend bisschen Abwechslung. Die anderen sind komplett überfordert mit dem Intranet und dem EC-System, das ich eingerichtet habe. Total nervig.</div>
+              <div class="bubble bubble--in">Hahaha, dachte ich mir schon. Marie hat auch schon gemeint, sie hat das Intranet so idiotenfreundlich wie möglich gestaltet. Boomer eben.</div>
             </div>
           </div>
 
@@ -325,7 +328,7 @@
     setActive(chatId, title, cls, txt);
   });
 
- 
+
   function appendOutgoing(text){
     const active = document.querySelector('.thread.active .msg-group');
     if(!active) return;
@@ -352,7 +355,7 @@
     }
   });
 
-  
+
   const defaultItem = list.querySelector('.chat-item.active') || list.querySelector('.chat-item');
   if(defaultItem){
     const title = defaultItem.querySelector('.chat-title')?.textContent || '';

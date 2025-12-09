@@ -56,7 +56,7 @@ window.addEventListener('DOMContentLoaded', ()=>{
 function setupIntranetLogin(){
   const form = document.getElementById('intranet-login');
   if(!form) return;
-  const okUser = 'markus wagner'; 
+  const okUser = 'markus wagner';   
   const okPass = '070125';
 
   const nameEl = form.querySelector('#loginName');

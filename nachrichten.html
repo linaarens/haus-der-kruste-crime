@@ -16,7 +16,7 @@
     .chat-layout{ display: grid; grid-template-columns: 320px 1fr; height: 100%; }
     @media (max-width: 980px){ .chat-layout{ grid-template-columns: 1fr } .chat-sidebar{ display:none } .chat-layout.show-left .chat-sidebar{ display:block } }
 
-   
+  
     .chat-sidebar{ border-right:1px solid rgba(0,0,0,.06); background:#F3F6F2; display:flex; flex-direction:column; }
     .chat-sidebar__head{ padding:12px 12px; display:flex; align-items:center; gap:10px; border-bottom:1px solid rgba(0,0,0,.06); }
     .chat-search{ width:100%; }
@@ -32,7 +32,7 @@
     .chat-title{ font-weight:700; }
     .chat-snippet{ color: var(--intra-muted); font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-    
+   
     .chat-main{ display:grid; grid-template-rows: auto 1fr auto; height:100%; }
     .chat-main__head{ padding:10px 14px; border-bottom:1px solid rgba(0,0,0,.06); display:flex; align-items:center; gap:10px; }
     .chat-main__head .avatar{ width:36px; height:36px; font-size:12px }
@@ -58,7 +58,7 @@
     .compose textarea{ flex:1; min-height:42px; max-height:160px; padding:10px 12px; border-radius:12px; border:1px solid rgba(0,0,0,.12); resize:vertical; background:#fff }
     .compose button{ white-space:nowrap }
 
-    
+   
     .muted{ color: var(--intra-muted) }
     .hide-on-mobile{ display:block } @media (max-width:980px){ .hide-on-mobile{ display:none } }
 
@@ -71,6 +71,7 @@
   font-weight:700; border:0; cursor:pointer;
 }
 .scroll-btn.show{ display:inline-flex; }
+
 
 
 
@@ -116,7 +117,6 @@
     <nav class="menu-panel">
   <a href="index.html">Start</a>
   <a href="dienstplan.html">Dienstplan</a>
-  <a href="verwaltung.html">Verwaltung</a>
   <a href="rezepte.html">Rezepte</a>
   <a href="nachrichten.html">Nachrichten</a>
 </nav>
@@ -137,26 +137,20 @@
             <div class="avatar av--group">HK</div>
             <div class="chat-meta"><div class="chat-title">Haus der Kruste (Gruppe)</div><div class="chat-snippet">…</div></div>
           </div>
-          <div class="chat-item" data-chat="chat-markus">
-            <div class="avatar av--a">MW</div>
-            <div class="chat-meta"><div class="chat-title">Markus Wagner</div><div class="chat-snippet">…</div></div>
+          <div class="chat-item" data-chat="chat-annemarie">
+            <div class="avatar av--a">AW</div>
+            <div class="chat-meta"><div class="chat-title">Annemarie Wagner</div><div class="chat-snippet">…</div></div>
           </div>
           <div class="chat-item" data-chat="chat-fatima">
             <div class="avatar av--f">FÖ</div>
             <div class="chat-meta"><div class="chat-title">Fatima Özdemir</div><div class="chat-snippet">…</div></div>
           </div>
-          <div class="chat-item" data-chat="chat-martin">
-            <div class="avatar av--m">MW</div>
-            <div class="chat-meta"><div class="chat-title">Martin Weiss</div><div class="chat-snippet">…</div></div>
-          </div>
-          <div class="chat-item" data-chat="chat-marie">
-            <div class="avatar av--mw">MB</div>
-            <div class="chat-meta"><div class="chat-title">Marie Beck</div><div class="chat-snippet">…</div></div>
-          </div>
+          
           <div class="chat-item" data-chat="chat-marcel">
             <div class="avatar av--mw">MaW</div>
             <div class="chat-meta"><div class="chat-title">Marcel Walde</div><div class="chat-snippet">…</div></div>
           </div>
+        
         </div>
       </aside>
 
@@ -172,58 +166,52 @@
 
         <div class="chat-messages" id="chatMessages">
           
-          <div class="thread active" id="chat-group">
+         <div class="thread active" id="chat-group">
             <div class="msg-group">
               <div class="bubble bubble--in">Krass, das mit Marcel... Ich weiß immer noch nicht, wie ich das verarbeiten soll...</div>
-              <div class="bubble bubble--in">Ja oder? Vor allem das kam so plötzlich. Weiß man schon was Neues von den Behörden?</div>
-               <div class="bubble bubble--out">Bei einem Bekannten von mir war das auch so ähnlich. Er hatte ne Nussallergie und auf einmal so nen Schock. Zack, tot.</div>
+              <div class="bubble bubble--out">Ja oder? Vor allem das kam so plötzlich. Weiß man schon was Neues von den Behörden?</div>
+               <div class="bubble bubble--in">Bei einem Bekannten von mir war das auch so ähnlich. Er hatte ne Nussallergie und auf einmal so nen Schock. Zack, tot.</div>
                <div class="bubble bubble--in">Echt traurig. Er war nicht mal mit der Ausbildung fertig. Die arme Familie.</div>
                 <div class="bubble bubble--in">So ein dummer Unfall.</div>
             </div>
           </div>
 
-          <div class="thread" id="chat-markus">
-             <div class="msg-group">
-              <div class="bubble bubble--out">Hey Schatz, ich bin schonmal losgefahren. Muss paar Sachen vorbereiten.</div>
-              <div class="bubble bubble--in">Okay! Ich bringe noch die kleine Lisa zur Oma und komme dann nach. Was möchtest du frühstücken? Ich bringe dir was mit.</div>
-               <div class="bubble bubble--out">Schatz, wir haben eine Bäckerei. Ich esse einfach etwas aus der Theke.</div>
-              <div class="bubble bubble--in">Ach stimmt ja. Okay! Sag Bescheid, wenn ich dir noch etwas Gutes tun kann! Ich liebe dich! Du bist mein Leben!!</div>
+          <div class="thread" id="chat-annemarie">
+            <div class="msg-group">
+              <div class="bubble bubble--in">Hey Marie, das neue Intranet ist wirklich super geworden! Ich zahle dir diesen Monat einen Bonus aus. Bleibst du dran an dem neuen Update für die Website?</div>
+              <div class="bubble bubble--out">Danke! Ja, mache ich.</div>
+                <div class="bubble bubble--out">Marcel hatte dir ja schon gesagt, dass es mit deinem Passwort Probleme gab. Wir haben dir ein Neues angelegt, ich bin mir nur unsicher, wie ich dir das am besten mitteilen kann. Martin legt ja großen Wert auf Sicherheit und Geheimhaltung.</div>
+<div class="bubble bubble--in">Stimmt, ich sehe euch zwei diese Woche ja nicht mehr, aber das Passwort bräuchte ich dringend. Kannst du mir das vielleicht verschlüsselt geben?</div>
+<div class="bubble bubble--out">Ja, ich habe eine Idee. Ich habe es in unserer Website versteckt. Schau dir einfach die Worte über meinem kleinen Easteregg an. Keine Zeichen, nur die Anfangsbuchstaben der Worte zusammengeschrieben. Achte auf die richtige Groß- und Kleinschreibung.</div>
+<div class="bubble bubble--in">Das ist perfekt, Danke!</div>
+            </div>
+          </div>
+
+          
+
+          <div class="thread" id="chat-marcel">
+            <div class="msg-group">
+              <div class="bubble bubble--out">Marcel, das geht so langsam nicht mehr weiter. Mir ist echt unwohl dabei. Du musst dringend mit deinem Bruder reden.</div>
+              <div class="bubble bubble--in">Ich weiß doch auch nicht mehr was ich tun soll. Das Ganze ist komplett außer Kontrolle geraten.</div>
+              <div class="bubble bubble--out">Halte das wenigstens aus der Bäckerei raus. Sonst stecken wir alle mit in dem Problem.</div>
+               <div class="bubble bubble--in">Mein Bruder sagt, so ist es am unauffälligsten. Und die Käufer finden das auch gut, deswegen kaufen so viele bei mir.</div>
+               <div class="bubble bubble--out">Marcel, bitte. Denk doch an den Vorfall letztens. Das muss euch doch wachrütteln!</div>
             </div>
           </div>
 
           <div class="thread" id="chat-fatima">
-             <div class="msg-group">
-              <div class="bubble bubble--out">Fatima, wie läuft es heute?</div>
-              <div class="bubble bubble--in">Gut soweit, nur Lucy war wieder da und hat mich über Marcel ausfragen wollen. Sie hat viel geweint.</div>
-              <div class="bubble bubble--in">Ich verstehe ja, das eine Trennung sehr schwer sein kann aber muss sie wirklich so oft an seinem Arbeitsplatz auftauchen? Es nervt langsam wirklich und die anderen Kunden werden abgeschreckt. Kannst du ihr irgendwie Hausverbot geben?</div>
-           <div class="bubble bubble--out">Ich schaue mal, was ich machen kann.</div>
-            </div>
-          </div>
-
-          <div class="thread" id="chat-martin">
-             <div class="msg-group">
-              <div class="bubble bubble--out">Super gemacht mit dem Intranet und dem EC-System. Danke dir, das hat mir wirklich unglaublich geholfen. Ich werde dir diesen Monat auf jeden Fall einen Bonus auszahlen!</div>
-              <div class="bubble bubble--in">Danke Annemarie!</div>
-            </div>
-          </div>
-
-          <div class="thread" id="chat-marie">
-           <div class="msg-group">
-              <div class="bubble bubble--out">Hey Marie, das neue Intranet ist wirklich super geworden! Ich zahle dir diesen Monat einen Bonus aus. Bleibst du dran an dem neuen Update für die Website?</div>
-              <div class="bubble bubble--in">Danke! Ja, mache ich.</div>
-              <div class="bubble bubble--in">Marcel hatte dir ja schon gesagt, dass es mit deinem Passwort Probleme gab. Wir haben dir ein Neues angelegt, ich bin mir nur unsicher, wie ich dir das am besten mitteilen kann. Martin legt ja großen Wert auf Sicherheit und Geheimhaltung.</div>
-<div class="bubble bubble--out">Stimmt, ich sehe euch zwei diese Woche ja nicht mehr, aber das Passwort bräuchte ich dringend. Kannst du mir das vielleicht verschlüsselt geben?</div>
-<div class="bubble bubble--in">Ja, ich habe eine Idee. Ich habe es in unserer Website versteckt. Schau dir einfach die Worte über meinem kleinen Easteregg an. Keine Zeichen, nur die Anfangsbuchstaben der Worte zusammengeschrieben. Achte auf die richtige Groß- und Kleinschreibung.</div>
-<div class="bubble bubble--out">Das ist perfekt, Danke!</div>
-            </div>
-          </div>
-
-          <div class="thread" id="chat-marcel">
-            <div class="msg-group">
-              <div class="bubble bubble--out">Marcel, kannst du dich diese Woche um den Backwettbewerb kümmern? Fatima kommt nicht mehr hinterher...</div>
-              <div class="bubble bubble--in">Klar, was muss ich da machen?</div>
-              <div class="bubble bubble--out">Probiere einfach alle eingehenden Torten und ranke sie dann in der Wettbewerbsliste.</div>
-               <div class="bubble bubble--in">Das klingt super! Da opfere ich mich doch gerne, hahah.</div>
+          <div class="msg-group">
+              <div class="bubble bubble--out">Wie geht es in der Bäckerei? Alles gut bei dir?</div>
+              <div class="bubble bubble--in">Gut soweit Liebes, nur ein paar unangenehme Begegnungen...</div>
+              <div class="bubble bubble--out">Ja? Ist Lucy wieder gekommen?</div>
+           <div class="bubble bubble--in">Ja. Und Annegret...</div>
+           <div class="bubble bubble--out">Oh nein, die Arme tut mir so leid... Tragisch, was da mit ihrer Enkelin passiert ist.</div>
+           <div class="bubble bubble--in">Ja... Sie hat erzählt, dass die Planung der Beerdigung sehr hart für sie ist.</div>
+           <div class="bubble bubble--out">Das glaube ich. Weiß man, woran sie gestorben ist? Sie war ja erst 16...</div>
+           <div class="bubble bubble--in">Das wollte ich sie nicht fragen. Vielleicht erzählt sie es ja mal, wenn sie soweit ist. Man munkelt aber, es soll eine Überdosis gewesen sein.</div>
+           <div class="bubble bubble--out">Oh Gott!! Das wäre ja schrecklich.</div>
+           <div class="bubble bubble--in">Ja... Wie läuft es bei dir heute?</div>
+           <div class="bubble bubble--out">Ganz gut. Ich gehe noch mit Abby spazieren, dann setze ich mich weiter an die Updates für die Website.</div>
             </div>
           </div>
 
@@ -279,7 +267,7 @@
     wrap.appendChild(scrollBtn);
   }
 
-  
+ 
   function atBottom(){
     return Math.abs(wrap.scrollHeight - wrap.scrollTop - wrap.clientHeight) < 4;
   }
@@ -337,7 +325,7 @@
     setActive(chatId, title, cls, txt);
   });
 
-  
+ 
   function appendOutgoing(text){
     const active = document.querySelector('.thread.active .msg-group');
     if(!active) return;
@@ -364,7 +352,7 @@
     }
   });
 
- 
+  
   const defaultItem = list.querySelector('.chat-item.active') || list.querySelector('.chat-item');
   if(defaultItem){
     const title = defaultItem.querySelector('.chat-title')?.textContent || '';
@@ -373,7 +361,7 @@
   }
   updateSnippets();
 
- 
+  
   const y = document.getElementById('year');
   if(y) y.textContent = new Date().getFullYear();
 })();

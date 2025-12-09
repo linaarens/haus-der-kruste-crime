@@ -1,241 +1,218 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Ermittlungsstart | Haus der Kruste – Sondereinheit</title>
-  <meta name="description" content="Einleitungsseite zur Ermittler-Mission. Starte die Untersuchung des Bäckerei-Falls." />
-  <style>
-    
-    :root {
-      --bg: #0b0f14;
-      --card: rgba(20, 26, 33, 0.72);
-      --card-solid: #141a21;
-      --accent: #ffd166; 
-      --accent-2: #e76f51; 
-      --muted: #a0a6ad;
-      --text: #e8edf1;
-      --success: #7bd88f;
-      --danger: #ff6b6b;
-      --focus: #72a0ff;
-    }
-
-    
-    *,*::before,*::after { box-sizing: border-box; }
-    html, body { height: 100%; }
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-      color: var(--text);
-      background: radial-gradient(1200px 600px at 10% 0%, #10151b 0%, transparent 60%),
-                  radial-gradient(900px 540px at 90% 100%, #0d1218 0%, transparent 60%),
-                  linear-gradient(180deg, #0a0e13 0%, #0b0f14 60%, #0a0e13 100%);
-      line-height: 1.5;
-      overflow: hidden; 
-    }
-
-    .noise, .scanlines {
-      position: fixed; inset: 0; pointer-events: none; opacity: .07; mix-blend-mode: overlay;
-      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="140" height="140" viewBox="0 0 140 140"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.95" numOctaves="2" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23n)" opacity="0.25"/></svg>');
-    }
-    .scanlines { background-image: repeating-linear-gradient(transparent 0 2px, rgba(255,255,255,.08) 2px 3px); opacity: .05; }
-
-    .container { position: relative; display: grid; place-items: center; min-height: 100vh; padding: 24px; }
-
-    .badge {
-      position: absolute; top: 16px; left: 16px; display: inline-flex; align-items: center; gap: 8px;
-      background: linear-gradient(180deg, #10161d, #0c1117);
-      border: 1px solid #1f2a36; color: var(--muted); border-radius: 999px; padding: 6px 12px; font-size: 12px;
-    }
-    .badge .dot { width: 8px; height: 8px; border-radius: 999px; background: var(--success); box-shadow: 0 0 10px var(--success); }
-
-    .card {
-      width: min(920px, 100%);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      background: linear-gradient(180deg, rgba(20,26,33,.85), rgba(14,18,23,.85));
-      border: 1px solid #1e2833; border-radius: 24px; box-shadow: 0 20px 60px rgba(0,0,0,.45);
-      overflow: hidden;
-    }
-
-    .hero {
-      position: relative; height: 220px; background:
-        linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.75)),
-        url('introductionbild.jpg');
-      background-size: cover; background-position: center center;
-    }
-    .hero::after { content: ""; position: absolute; inset: 0; background: radial-gradient(600px 160px at 20% 20%, rgba(255,209,102,.15), transparent 60%); }
-
-.topnav { position: absolute; top: 12px; right: 12px; display: inline-flex; gap: 8px; z-index: 2; }
-.btn { --bg-btn: #1a2430; --bd-btn: #2a394b; --fg-btn: #e8edf1; display: inline-flex; align-items: center; gap: 10px; padding: 12px 16px; border-radius: 14px; font-weight: 600; text-decoration: none; color: var(--fg-btn); background: var(--bg-btn); border: 1px solid var(--bd-btn); cursor: pointer; transition: transform .06s ease, background .2s ease, border-color .2s ease; }
-.btn:hover { transform: translateY(-1px); }
-.btn:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
-.btn.primary { --bg-btn: linear-gradient(180deg, #2a394b, #1a2430); --bd-btn: #3a4b61; }
-.btn.accent { --bg-btn: linear-gradient(180deg, #ffda7a, #ffc84a); --bd-btn: #f4b942; color: #1b1200; }
-.btn.ghost { background: transparent; border-style: dashed; color: var(--muted); }
-.btn.sm { padding: 8px 12px; border-radius: 12px; font-size: 12px; }
-
-
-    .hero-bar {
-      position: absolute; inset-inline: 0; bottom: 0; display: flex; justify-content: space-between; align-items: center; gap: 8px;
-      padding: 16px 20px; background: linear-gradient(180deg, transparent, rgba(10,14,19,.8));
-      border-top: 1px solid rgba(255,255,255,.05);
-    }
-    .logo { font-weight: 700; letter-spacing: .1em; text-transform: uppercase; font-size: 14px; color: var(--accent); }
-    .case { font-size: 12px; color: var(--muted); }
-
-    .content { padding: 24px 20px 18px; display: grid; gap: 18px; }
-
-    h1 { margin: 0; font-size: clamp(22px, 3.4vw, 32px); letter-spacing: .02em; }
-    p { margin: 0; color: #cbd2d8; }
-
-    .typewriter {
-      min-height: 240px; padding: 20px; border-radius: 16px; border: 1px dashed #2b3847; background: #0f141a;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; 
-      font-size: 16px; line-height: 1.7;
-      outline: none; position: relative;
-    }
-    .cursor { display: inline-block; width: 8px; height: 1.1em; background: var(--accent); vertical-align: bottom; animation: blink 1s step-end infinite; }
-    @keyframes blink { 50% { opacity: 0; } }
-
-    .controls { display: flex; flex-wrap: wrap; gap: 10px; }
-
-    .btn {
-      --bg-btn: #1a2430; --bd-btn: #2a394b; --fg-btn: #e8edf1;
-      display: inline-flex; align-items: center; gap: 10px; padding: 12px 16px; border-radius: 14px; font-weight: 600; text-decoration: none; color: var(--fg-btn);
-      background: var(--bg-btn); border: 1px solid var(--bd-btn); cursor: pointer; transition: transform .06s ease, background .2s ease, border-color .2s ease;
-    }
-    .btn:hover { transform: translateY(-1px); }
-    .btn:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
-    .btn.primary { --bg-btn: linear-gradient(180deg, #2a394b, #1a2430); --bd-btn: #3a4b61; }
-    .btn.accent  { --bg-btn: linear-gradient(180deg, #ffda7a, #ffc84a); --bd-btn: #f4b942; color: #1b1200; }
-    .btn.ghost   { background: transparent; border-style: dashed; color: var(--muted); }
-
-   
-    dialog { width: min(820px, 92vw); border: 1px solid #2a394b; border-radius: 20px; padding: 0; color: var(--text); background: linear-gradient(180deg, #141a21, #0f141a); }
-    dialog::backdrop { background: rgba(0,0,0,.6); }
-    .modal-hd { display:flex; align-items:center; justify-content: space-between; padding: 16px 18px; border-bottom: 1px solid #223042; background: #10161d; }
-    .modal-bd { padding: 18px; max-height: min(60vh, 520px); overflow: auto; }
-    .modal-ft { padding: 12px 18px 18px; display:flex; justify-content:flex-end; gap:10px; border-top: 1px solid #223042; }
-
-    .grid { display: grid; gap: 12px; grid-template-columns: repeat(12, 1fr); }
-    .col-6 { grid-column: span 6; }
-    .col-12 { grid-column: span 12; }
-
-    .card-sm { background: #0f141a; border: 1px solid #203043; border-radius: 16px; padding: 12px; }
-    .label { font-size: 12px; color: var(--muted); letter-spacing: .06em; text-transform: uppercase; }
-    .value { font-weight: 600; }
-
-   
-    @media (prefers-reduced-motion: reduce) {
-      .btn:hover { transform: none; }
-      .cursor { animation: none; }
-    }
-  </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Intranet – Start</title>
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+  
+  <link rel="stylesheet" href="./intranet.css">
 </head>
-<body>
-  <div class="noise"></div>
-  <div class="scanlines"></div>
+<body class="intranet">
 
-  <div class="container">
-    <span class="badge" aria-label="Systemstatus: Überwachung aktiv">
-      <span class="dot" aria-hidden="true"></span>
-      Sondereinheit · gesicherter Kanal 
-    </span>
-     <nav class="topnav" aria-label="Sektionen">
-<a href="introductioninfo.html" class="btn primary sm" id="menuInfo">Informationen</a>
-<a href="introductionsolution.html" class="btn primary sm" id="menuSolve">Auflösung</a>
-</nav>
+<div id="hintfab"
+     class="hintfab"
+     data-h1="Von wem könnte die anonyme Notiz stammen? Wurde nicht schonmal eine Angehörige einer verstorbenen 16jährigen erwähnt? Und was hat es mit den Drogendelikten eines Mitarbeitenden auf sich?"
+     data-h2="Die Teilnehmendenliste und die Bewertung des Backwettbewerbs könnten dabei helfen, eine verdächtige Person ausfindig zu machen."
+     data-solution="Eine Annegret scheint die gesuchte Verdächtige zu sein.">
+  <button class="hintfab-btn" type="button" aria-expanded="false" aria-controls="hintfab-panel" aria-label="Hinweise öffnen">
+    
+    <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+      <path fill="currentColor" d="M9 21h6a1 1 0 0 0 1-1v-1H8v1a1 1 0 0 0 1 1m3-19a7 7 0 0 0-4 12.9V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.1A7 7 0 0 0 12 2" />
+    </svg>
+  </button>
 
-    <main class="card" role="main" aria-labelledby="headline">
-      <div class="hero" aria-hidden="true">
-       
-        <div class="hero-bar">
-          <div>
-            <div class="logo">Haus der Kruste – Interne Ermittlung</div>
-            <div class="case">Fall-ID: <strong>BG-0319</strong> · Vorgang: <em>„Der süße Tod“</em></div>
-          </div>
-        </div>
+  <div class="hintfab-panel" id="hintfab-panel" role="dialog" aria-modal="false" aria-labelledby="hintfab-title">
+    <div class="hintfab-hd">
+      <strong id="hintfab-title">Hinweise</strong>
+      <button class="hintfab-close" type="button" aria-label="Schließen">×</button>
+    </div>
+
+    <div class="hintfab-actions" role="group" aria-label="Hinweisstufe wählen">
+      <button class="hintfab-chip" type="button" data-show="h1">Hinweis 1</button>
+      <button class="hintfab-chip" type="button" data-show="h2">Hinweis 2</button>
+      <button class="hintfab-chip primary" type="button" data-show="solution">Lösung anzeigen</button>
+    </div>
+
+    <div class="hintfab-body" id="hintfab-content">
+      <em>Wähle eine Option, um einen Hinweis zu sehen.</em>
+    </div>
+  </div>
+</div>
+
+<style>
+  
+  .hintfab { position: fixed; right: 20px; bottom: 20px; z-index: 9999; font-family: inherit; }
+  .hintfab-btn {
+    width: 56px; height: 56px; border-radius: 50%;
+    background: var(--accent, #ffd166); color: #0b0f14;
+    border: 1px solid rgba(0,0,0,.2); box-shadow: 0 8px 24px rgba(0,0,0,.25);
+    display: grid; place-items: center; cursor: pointer;
+    transition: transform .08s ease;
+  }
+  .hintfab-btn:hover { transform: translateY(-1px); }
+  .hintfab-panel {
+    position: absolute; right: 0; bottom: 72px; width: min(320px, 88vw);
+    background: linear-gradient(180deg, rgba(20,26,33,.95), rgba(14,18,23,.95));
+    color: var(--text, #e8edf1);
+    border: 1px solid #203043; border-radius: 14px; box-shadow: 0 16px 48px rgba(0,0,0,.45);
+    padding: 10px; opacity: 0; transform: translateY(6px) scale(.98);
+    pointer-events: none; transition: opacity .15s ease, transform .15s ease;
+  }
+  .hintfab.open .hintfab-panel { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
+  .hintfab-hd { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 4px 2px 8px; }
+  .hintfab-close {
+    border: 1px solid #2a394b; background: #0f141a; color: #cbd2d8;
+    width: 28px; height: 28px; border-radius: 8px; cursor: pointer;
+  }
+  .hintfab-actions { display: flex; flex-wrap: wrap; gap: 8px; padding: 6px 2px 8px; }
+  .hintfab-chip {
+    border: 1px solid #2a394b; background: #0f141a; color: #e8edf1;
+    border-radius: 999px; padding: 6px 10px; font-size: 13px; cursor: pointer;
+  }
+  .hintfab-chip.primary { background: linear-gradient(180deg, #2a394b, #1a2430); }
+  .hintfab-body {
+    background: #0b1217; border: 1px dashed #2b3847; border-radius: 10px;
+    padding: 10px; font-size: 14px;
+  }
+</style>
+
+<script>
+  (function(){
+    const fab = document.getElementById('hintfab');
+    if (!fab) return;
+    const btn = fab.querySelector('.hintfab-btn');
+    const panel = fab.querySelector('.hintfab-panel');
+    const closeBtn = fab.querySelector('.hintfab-close');
+    const content = fab.querySelector('#hintfab-content');
+
+    const texts = {
+      h1: fab.dataset.h1 || 'Hinweis 1 (Platzhalter)',
+      h2: fab.dataset.h2 || 'Hinweis 2 (Platzhalter)',
+      solution: fab.dataset.solution || 'Lösung (Platzhalter)'
+    };
+
+    function openPanel(){
+      fab.classList.add('open');
+      btn.setAttribute('aria-expanded','true');
+      
+      setTimeout(() => panel.querySelector('[data-show]')?.focus(), 0);
+      
+      document.addEventListener('click', onDocClick, { capture: true });
+      document.addEventListener('keydown', onKey);
+    }
+    function closePanel(){
+      fab.classList.remove('open');
+      btn.setAttribute('aria-expanded','false');
+      document.removeEventListener('click', onDocClick, { capture: true });
+      document.removeEventListener('keydown', onKey);
+      btn.focus();
+    }
+    function onDocClick(e){
+      if (!fab.contains(e.target)) { closePanel(); }
+    }
+    function onKey(e){
+      if (e.key === 'Escape') closePanel();
+    }
+
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      fab.classList.contains('open') ? closePanel() : openPanel();
+    });
+    closeBtn.addEventListener('click', closePanel);
+
+    panel.querySelectorAll('[data-show]').forEach(el => {
+      el.addEventListener('click', () => {
+        const key = el.getAttribute('data-show');
+        content.innerHTML = `<strong>${el.textContent}:</strong> ${texts[key]}`;
+      });
+    });
+  })();
+</script>
+
+
+
+
+
+<header class="intra-header">
+  <div class="container--intra intra-header__bar">
+    <a class="intra-brand" href="index.html" aria-label="Zur Website">
+      <span class="brand__logo" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 12c0-4.418 3.582-8 8-8 3.314 0 6 2.686 6 6v6a2 2 0 0 1-2 2H8a4 4 0 0 1-4-4v-2Z" fill="white"/>
+          <path d="M9 9c0-1 .8-1.8 1.8-1.8M12 10c0-1 .8-1.8 1.8-1.8M15 11c0-1 .8-1.8 1.8-1.8" stroke="#8B5E34" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </span>
+      <span class="intra-brand__title">Intranet</span>
+    </a>
+    <button class="menu-toggle" aria-controls="menu" aria-expanded="false">Menü</button>
+    <nav id="menu" class="menu-panel" aria-label="Intranet Navigation">
+      <a href="index.html">Start</a>
+      <a href="dienstplan.html">Dienstplan</a>
+      <a href="verwaltung.html">Verwaltung</a>
+      <a href="rezepte.html">Rezepte</a>
+      <a href="nachrichten.html">Nachrichten</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container--intra section--intra">
+  <div class="card--intra" style="padding:18px">
+    <div class="welcome">
+      <img class="avatar" src="annemariewagner.jpg" alt="Profilbild Annemarie" onerror="this.src='https://via.placeholder.com/88x88?text=MW';this.style.filter='grayscale(20%)'">
+      <div>
+        <h1 class="m0">Willkommen, Annemarie Wagner!</h1>
+        <p class="mt8"><span class="badge">Backstube</span> <span class="small" style="color:var(--intra-muted)">Schichtbeginn morgen 05:00</span></p>
       </div>
-
-      <div class="content">
-        <h1 id="headline">Willkommen, Ermittler<span aria-hidden="true">:</span>in!</h1>
-        <div class="typewriter" id="briefing" aria-live="polite" aria-label="Einsatzbefehl (wird vorgelesen)">
-          <span id="typed"></span><span class="cursor" aria-hidden="true"></span>
-        </div>
-
-        <div class="controls">
-          <button class="btn accent" id="startBtn" aria-label="Ermittlung starten">Ermittlung starten</button>
-        </div>
-      </div>
-    </main>
+    </div>
   </div>
 
-  <script>
-    (function(){
-      const MAIN_SITE_URL = 'startseite.html'; 
+  <section class="section--intra">
+    <div class="grid-3">
+       <a class="recipe-card" href="dienstplan.html" style="text-decoration:none">
+        <div class="recipe-card">
+          <h4 class="m0">Dienstplan</h4>
+          <div class="meta">Arbeitsplan und Schichten</div>
+          <div class="actions"><span class="btn">Öffnen</span></div>
+        </div>
+      </a>
+      <a class="recipe-card" href="verwaltung.html" style="text-decoration:none">
+        <div class="recipe-card">
+          <h4 class="m0">Verwaltung</h4>
+          <div class="meta">Rechnungen</div>
+          <div class="actions"><span class="btn">Öffnen</span></div>
+        </div>
+      </a>
+      <a class="recipe-card" href="rezepte.html" style="text-decoration:none">
+        <div class="recipe-card">
+          <h4 class="m0">Rezepte</h4>
+          <div class="meta">Kuchen Muffins Torten</div>
+          <div class="actions"><span class="btn">Öffnen</span></div>
+        </div>
+      </a>
+      <a class="recipe-card" href="nachrichten.html" style="text-decoration:none">
+        <div class="recipe-card">
+          <h4 class="m0">Nachrichten</h4>
+          <div class="meta">Team-Updates & Chat</div>
+          <div class="actions"><span class="btn">Öffnen</span></div>
+        </div>
+      </a>
+    </div>
+  </section>
+</main>
 
-      const lines = [
-        'Du bist Teil der Sondereinheit zum Todesfall im Hause der Kruste.',
-        ' Ein junger Mann starb in der Bäckerei. Jetzt müssen wir ermitteln.',
-        ' Dein Auftrag: Untersuche die Website der Bäckerei. Jede Seite könnte einen Hinweis enthalten.',
-        ' Achte auf alles, was uns weiterhelfen könnte. Vielleicht kommst du ja sogar in das Intranet der Mitarbeitenden.',
-        ' Wir haben dir alle Infos bereitgestellt, die wir bisher zur Verfügung haben.',
-        ' Schreibe uns anschließend deine Erkenntnisse in die Auflösung hier auf dieser Seite.',
-        ' Wenn du bereit bist, starte die Ermittlung.'
-      ];
-
-      const elTyped = document.getElementById('typed');
-      const elStart = document.getElementById('startBtn');
-
-      
-      const store = {
-        get(key, fallback=null){ try { const v = localStorage.getItem(key); return v === null ? fallback : JSON.parse(v); } catch { return fallback; } },
-        set(key, val){ try { localStorage.setItem(key, JSON.stringify(val)); } catch {} }
-      };
-
-     
-      let cancelTyping = false;
-      const typeAll = async () => {
-        for (const line of lines) {
-          if (cancelTyping) break;
-          await typeLine(line + '');
-        }
-      };
-
-      async function typeLine(text){
-        const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        if (prefersReduced) { elTyped.textContent += text; return; }
-        for (const ch of text) {
-          if (cancelTyping) return;
-          elTyped.textContent += ch;
-          await new Promise(r => setTimeout(r, 18 + Math.random()*40));
-        }
-      }
-
-      function gotoMain(){
-        store.set('introSeen', true);
-        const url = new URL(MAIN_SITE_URL, window.location.href);
-        window.open(url.toString(), '_blank', 'noopener');
-      }
-
-      elStart.addEventListener('click', gotoMain);
-
-      
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') {
-          e.preventDefault();
-          elStart.click();
-        }
-      });
-
-     
-      typeAll();
-
-     
-    })();
-
-  </script>
-  
+<footer class="intra-footer">
+  <div class="container--intra intra-footer__inner small">
+    <span>© <span id="year"></span> Haus der Kruste · Intranet</span>
+    <span><a href="../team.html">Zurück zum Team</a></span>
+  </div>
+</footer>
+<script src="main.js" defer></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
